@@ -2,6 +2,30 @@
 
 This is a "Hello World" style repo showing how to successfully integrate Leptos SSR with Cloudflare Pages. Cloudflare Pages has the advantage over worker sites in that static asset retrieval, such as a the client wasm bundle or css, is free.
 
+The app contains a SSR'ed page with client hydration of a button, which hits a Server Side Function that generates a random number and returns it to the client.
+
+[Live Demo](https://b2ffdcd8.leptos-example.pages.dev/)
+
+```rs
+#[server]
+pub async fn generate_random_number() -> Result<f64, ServerFnError> {
+    Ok(js_sys::Math::random())
+}
+
+#[component]
+pub fn hello_world() -> impl IntoView {
+    provide_meta_context();
+
+    let get_random = create_server_action::<GenerateRandomNumber>();
+    let on_click = move |_| get_random.dispatch(GenerateRandomNumber {});
+
+    view! {
+      <h1>"Hello, World! "{move || get_random.value()}</h1>
+      <button on:click=on_click>"Get me a random number"</button>
+    }
+}
+```
+
 
 ### Routing
 
