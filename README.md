@@ -5,7 +5,7 @@ This is a "Hello World" style repo showing how to successfully integrate Leptos 
 
 ### Routing
 
-To determine what it routed to static assets in Cloudflare Pages vs the Worker functions there is the `_routes.json` file which controls basic pattern matching of routes. e.g.
+To determine what is routed to static assets in Cloudflare Pages vs the Worker functions there is the `_routes.json` file which controls basic pattern matching of routes. e.g.
 
 ```json
 {
