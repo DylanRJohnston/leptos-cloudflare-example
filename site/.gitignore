@@ -1,0 +1,4 @@
+*
+!.gitignore
+!_routes.json
+!_worker.js
